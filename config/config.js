@@ -1,0 +1,15 @@
+module.exports = {
+    BIGSHIP_ACCESS_KEY: "cf392259bff0b916c1a6c4e3758884f125a354700687740aaed9e5626aabd849",
+    BIGSHIP_BASEURL: "https://api.bigship.in/",
+    BIGSHIP_EMAIL: "mmukeshkumardas001@gmail.com",
+    BIGSHIP_PASSWORD: "Yantratools#2602",
+    RAZORPAY_ID:"rzp_live_mJ7dDLo6ahgNWO",
+    RAZORPAY_SECRET:"bMHihICbaZKHIKsjb7nQkmvs",
+    AWS_REGION:"ap-south-1",
+    AWS_ACCESS_KEY_ID:"AKIAXNGUVGWQNWBXW3U6",
+    AWS_SECRET_ACCESS_KEY:"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",
+    AWS_BUCKET_NAME:"yantra-bucket",
+    SMS_AUTH_KEY:"412959AHFdeHOz6628f475P1",
+    SMS_TEMPLATE_ID:"67aee2efd6fc050f8a2f4e72",
+    OTP_TEMPLATE_ID:"662a2773d6fc054fe5492023"
+  };

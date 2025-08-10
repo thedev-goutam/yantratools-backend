@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yantratools</title>
+    <style>
+        /* Reset and basic styles */
+        body, table, td, a {
+            text-decoration: none;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        img {
+            border: 0;
+            outline: none;
+            text-decoration: none;
+        }
+
+        /* Main container */
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Scrollable table container */
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Responsive table */
+        .product-table {
+            width: 100%;
+            table-layout: auto; 
+            border-collapse: collapse;
+        }
+        .product-table th, .product-table td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            word-wrap: break-word;
+        }
+        .product-table th {
+            background-color: #eceff4;
+        }
+        .currency {
+            text-align: right;
+        }
+        .text-right {
+            text-align: right;
+        }
+        .strong {
+            font-weight: bold;
+        }
+
+        /* Media Queries for responsive design */
+        @media screen and (max-width: 600px) {
+            .email-container {
+                width: 100% !important;
+                padding: 15px;
+            }
+            .product-table th, .product-table td {
+                font-size: 12px;
+                padding: 6px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="email-container">
+        <p>Dear Customer,</p>
+        <p>
+            We thought you'd like to know that your order for <strong>price ({{order.invoice_total}})</strong> is pending confirmation. Your Order ID is <strong>{{order.code}}</strong>. Shortly, you will receive an order confirmation call to proceed with the dispatch of your order.
+        </p>
+
+        <div style="padding: 1.5rem 0;">
+            <table class="product-table">
+                <thead>
+                    <tr>
+                        <th width="35%">Product Name</th>
+                        <th width="15%">Delivery Type</th>
+                        <th width="10%">Qty</th>
+                        <th width="15%">Unit Price</th>
+                        <th width="10%">Tax</th>
+                        <th width="15%" class="text-right">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each orderDetails}}
+                    <tr>
+                        <td>{{product_name}}</td>
+                        <td>{{shipping_type}}</td>
+                        <td>{{quantity}}</td>
+                        <td class="currency">{{inv_unit_price}}</td>
+                        <td class="currency">{{inv_tax}}</td>
+                        <td class="currency">{{inv_total}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+
+        <div style="padding: 1.5rem 0;">
+            <table class="product-table">
+                <tbody>
+                    <tr>
+                        <th>Sub Total</th>
+                        <td class="currency">{{order.invoice_subtotal}}</td>
+                    </tr>
+                    <tr>
+                        <th>Shipping Cost</th>
+                        <td class="currency">{{order.invoice_shippingcost}}</td>
+                    </tr>
+                    {{#if order.full_with_discount }}
+                    <tr>
+                        <th>Full Payment Discount</th>
+                        <td class="currency">{{order.invoice_fulldis}}</td>
+                    </tr>
+                    {{/if}} 
+                    {{#if order.p_mode_three }}
+                    <tr>
+                        <th>COD Charges</th>
+                        <td class="currency">{{order.invoice_codc}}</td>
+                    </tr>
+                    {{/if}} 
+                    {{#if order.p_mode_two }}
+                    <tr>
+                        <th>Advance Payment</th>
+                        <td class="currency">{{order.invoice_advp}}</td>
+                    </tr>
+                    <tr>
+                        <th>Balanced</th>
+                        <td class="currency">{{order.balance_invoice}}</td>
+                    </tr>
+                    {{/if}}
+                    <tr>
+                        <th>Total Tax</th>
+                        <td class="currency">{{order.tax_invoice}}</td>
+                    </tr>
+                    <tr class="strong">
+                        <th>Grand Total</th>
+                        <td class="currency">{{order.invoice_total}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div>
+            <ul>
+                <li>Terms and condition: <a href="https://yantratools.com/terms" target="_blank">https://yantratools.com/terms</a></li>
+                <li>Payment Policy: <a href="https://yantratools.com/securepayment" target="_blank">https://yantratools.com/securepayment</a></li>
+                <li>Return Policy: <a href="https://yantratools.com/returnpolicy" target="_blank">https://yantratools.com/returnpolicy</a></li>
+            </ul>
+            <p>Thank you for visiting Yantratools, we are happy to serve you with our best services.</p>
+            <p>Team Yantratools</p><br/>
+            <p style="font-size: 12px; color: #777;">This is an auto-generated email, kindly do not reply.</p>
+        </div>
+    </div>
+    
+</body>
+</html>
